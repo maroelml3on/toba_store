@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --ink: #151515;
+  --muted: #777;
+  --line: #e8e6e1;
+  --paper: #f6f5f1;
+  --lime: #d6ff70;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Cairo, Tahoma, sans-serif;
+}
+button, input, textarea, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a { text-decoration: none; color: inherit; }
+.hidden { display: none !important; }
+.topbar {
+  min-height: 75px;
+  padding: 15px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  background: white;
+  border-bottom: 1px solid var(--line);
+}
+.brand { font: 900 21px Arial, sans-serif; letter-spacing: -1px; }
+.brand span { color: #888; font-size: 11px; letter-spacing: 1px; }
+.top-actions { display: flex; align-items: center; gap: 12px; }
+.view-store { font-size: 12px; }
+.container { max-width: 1120px; width: 90%; margin: 42px auto 70px; }
+.login-card {
+  max-width: 440px;
+  margin: 50px auto;
+  padding: 35px;
+  background: white;
+  border: 1px solid var(--line);
+}
+.eyebrow { font: 800 10px Arial, sans-serif; letter-spacing: 1.8px; color: #777; }
+h1 { font-size: 30px; margin: 8px 0; }
+h2 { font-size: 21px; margin: 6px 0 0; }
+.muted { color: var(--muted); font-size: 12px; }
+label { display: block; font-size: 12px; font-weight: 700; margin: 16px 0 7px; }
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 3px;
+  outline: none;
+  color: var(--ink);
+}
+input:focus, textarea:focus, select:focus { border-color: #555; }
+.button {
+  padding: 10px 17px;
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.primary { background: var(--ink); color: white; }
+.secondary { background: white; color: var(--ink); }
+.full { width: 100%; margin-top: 22px; }
+.button:disabled { opacity: .55; cursor: wait; }
+.message { font-size: 12px; color: #555; overflow-wrap: anywhere; }
+.welcome { margin-bottom: 25px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 22px 0; }
+.stat-card { padding: 22px; background: white; border: 1px solid var(--line); }
+.stat-card span { display: block; font-size: 12px; color: var(--muted); }
+.stat-card strong { display: block; margin-top: 8px; font: 800 29px Arial, sans-serif; }
+.panel { background: white; border: 1px solid var(--line); padding: 25px; margin: 18px 0; }
+.panel-heading { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 20px; }
+.product-form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px 18px; }
+.field { min-width: 0; }
+.field.wide { grid-column: 1 / -1; }
+.field label { margin-top: 10px; }
+.image-preview { display: block; margin-top: 12px; max-width: 180px; max-height: 180px; object-fit: contain; border: 1px solid var(--line); }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 570px; }
+th, td { text-align: right; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { background: #f8f8f6; white-space: nowrap; }
+td img { width: 48px; height: 58px; object-fit: cover; }
+.status-select { min-width: 125px; padding: 7px; }
+.delete-button { border: 1px solid #d7b8b8; background: white; color: #9a2525; padding: 7px 10px; }
+.empty { padding: 25px 0; color: var(--muted); font-size: 12px; }
+footer { text-align: center; padding: 25px; font-size: 11px; color: var(--muted); }
+@media(max-width: 700px) {
+  .container { width: 94%; margin-top: 25px; }
+  .topbar { padding: 14px 4%; }
+  .brand { font-size: 17px; }
+  .brand span { font-size: 9px; }
+  .stats { gap: 8px; }
+  .stat-card { padding: 13px; }
+  .stat-card strong { font-size: 23px; }
+  .panel, .login-card { padding: 18px; }
+  .product-form { grid-template-columns: 1fr 1fr; }
+  .field.wide { grid-column: 1 / -1; }
+  h1 { font-size: 25px; }
+}
+@media(max-width: 400px) {
+  .view-store { display: none; }
+  .product-form { grid-template-columns: 1fr; }
+  .field.wide { grid-column: auto; }
+}
+
+/* TOBA STORE branding */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+/* ===== TOBA STORE owner welcome animation ===== */
+.owner-welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(ellipse at center, #242424 0%, #101010 48%, #050505 100%);
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .55s ease, visibility .55s ease;
+}
+.owner-welcome.show {
+  opacity: 1;
+  visibility: visible;
+}
+.owner-welcome-content {
+  width: min(100%, 390px);
+  text-align: center;
+  animation: ownerWelcomeRise .7s cubic-bezier(.2,.75,.25,1) both;
+}
+.owner-welcome-logo {
+  display: block;
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 22px;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 10px 38px rgba(0,0,0,.4);
+}
+.owner-welcome-kicker {
+  margin: 0 0 12px;
+  color: #aaa;
+  font-size: 11px;
+  letter-spacing: 5px;
+  direction: ltr;
+}
+.owner-welcome h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(22px, 5vw, 30px);
+  font-weight: 800;
+}
+.owner-welcome-subtitle {
+  margin: 12px 0 28px;
+  color: #bcbcbc;
+  font-size: 14px;
+}
+.owner-welcome-progress {
+  width: 165px;
+  height: 2px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #373737;
+}
+.owner-welcome-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+.owner-welcome.show .owner-welcome-progress span {
+  animation: ownerWelcomeProgress 2.4s ease forwards;
+}
+.owner-welcome-caption {
+  margin-top: 15px;
+  color: #888;
+  font-size: 12px;
+}
+@keyframes ownerWelcomeRise {
+  from { opacity: 0; transform: translateY(14px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes ownerWelcomeProgress {
+  to { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .owner-welcome, .owner-welcome-content {
+    transition-duration: .01ms;
+    animation-duration: .01ms;
+  }
+  .owner-welcome.show .owner-welcome-progress span {
+    animation-duration: .01ms;
+  }
+}

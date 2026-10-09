@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="متجر توبة | TOBA STORE - تسوق أحدث الملابس">
+  <title>متجر توبة | TOBA STORE</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/store.js" defer></script>
+</head>
+<body>
+
+  <div id="tobaIntro" class="toba-intro" role="status" aria-label="جارٍ تجهيز متجر توبة">
+    <div class="toba-intro-content">
+      <img class="toba-intro-logo" src="/images/TOBA_STORE.jpeg" alt="شعار TOBA STORE">
+      <h1 class="toba-intro-name">TOBA STORE</h1>
+      <p class="toba-intro-subtitle">اكتشف أسلوبك الخاص</p>
+      <div class="toba-intro-track"><span></span></div>
+      <p class="toba-intro-caption">جارٍ تجهيز متجرك...</p>
+    </div>
+  </div>
+
+  <div class="announcement">ستايلك يبدأ من هنا — اكتشف تشكيلتنا الجديدة</div>
+
+  <header class="header">
+    <a class="logo" href="/" aria-label="متجر توبة | TOBA STORE"><img src="/images/TOBA_STORE.jpeg" alt="لوجو متجر توبة"><span class="brand-name">متجر توبة | TOBA STORE</span></a>
+    <nav class="nav">
+      <a href="#home">الرئيسية</a>
+      <a href="#categories">الأقسام</a>
+      <a href="#products">المنتجات</a>
+    </nav>
+    <button class="cart-button" id="cartButton">
+      السلة <span id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">NEW COLLECTION</span>
+        <h1>خليك على<br>طبيعتك. <span>خليك مميز.</span></h1>
+        <p>قطع مختارة بعناية عشان تعبّر عن ستايلك كل يوم.</p>
+        <a class="primary-button" href="#products">اكتشف المنتجات <span>←</span></a>
+      </div>
+      <div class="hero-art" aria-label="تصميم تجريدي للموضة">
+        <div class="art-circle"></div>
+        <div class="art-label">YOUR<br>OWN STYLE</div>
+        <div class="art-number">01 / 26</div>
+      </div>
+    </section>
+
+    <section class="categories section" id="categories">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">EXPLORE</span>
+          <h2>اختار ستايلك</h2>
+        </div>
+        <p>البس اللي يشبهك.</p>
+      </div>
+      <div class="category-grid">
+        <a class="category-card men" href="#products">
+          <span>01 / MEN</span>
+          <h3>رجالي</h3>
+          <span class="category-arrow">↙</span>
+        </a>
+        <a class="category-card women" href="#products">
+          <span>02 / WOMEN</span>
+          <h3>حريمي</h3>
+          <span class="category-arrow">↙</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="products section" id="products">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">OUR SELECTION</span>
+          <h2>أحدث المنتجات</h2>
+        </div>
+        <span class="muted" id="productCount">جاري تحميل المنتجات...</span>
+      </div>
+      <div class="product-grid" id="productGrid">
+        <div class="loading">جاري تحميل المنتجات...</div>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <span class="eyebrow">STAY IN STYLE</span>
+      <h2>ستايل جديد، كل يوم.</h2>
+      <p>تابع تشكيلتنا الجديدة واختار القطع اللي تناسبك.</p>
+      <a href="#products" class="primary-button">تسوّق الآن ←</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="logo" href="/" aria-label="متجر توبة | TOBA STORE"><img src="/images/TOBA_STORE.jpeg" alt="لوجو متجر توبة"><span class="brand-name">متجر توبة | TOBA STORE</span></a>
+    <p>ستايلك، اختيارك.</p>
+    <span>© <span id="year"></span> متجر توبة | TOBA STORE</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="productDialog" class="product-dialog" aria-labelledby="detailName">
+    <div class="dialog-heading">
+      <h2 id="detailName">تفاصيل المنتج</h2>
+      <button id="closeProduct" class="icon-button" type="button" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="product-detail-layout">
+      <div class="product-detail-photo">
+        <img id="detailImage" src="" alt="" />
+      </div>
+      <div class="product-detail-info">
+        <p id="detailDescription"></p>
+        <div id="detailPrice" class="price"></div>
+        <div class="detail-option">
+          <h3>اللون</h3>
+          <div id="detailColors" class="detail-colors"></div>
+        </div>
+        <div class="detail-option">
+          <label for="detailSize">المقاس</label>
+          <select id="detailSize" class="detail-select"></select>
+          <p id="sizeAvailability" class="muted"></p>
+        </div>
+        <div class="detail-option">
+          <label for="detailQuantity">الكمية</label>
+          <input id="detailQuantity" class="detail-quantity" type="number" min="1" value="1" />
+        </div>
+        <button id="buyWhatsApp" class="buy-whatsapp" type="button">اطلب عبر واتساب</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="cartDialog" class="cart-dialog">
+    <div class="dialog-heading">
+      <h2>سلة التسوق</h2>
+      <button id="closeCart" class="icon-button" aria-label="إغلاق">✕</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-total">الإجمالي: <strong id="cartTotal">0 ج.م</strong></div>
+    <p class="muted">إتمام الطلب وربط بيانات العميل هنضيفه في الخطوات القادمة.</p>
+  </dialog>
+  <script src="/js/intro.js" defer></script>
+</body>
+</html>

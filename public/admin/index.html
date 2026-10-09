@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>لوحة التحكم | متجر توبة</title>
+  <link rel="stylesheet" href="/css/admin.css">
+  <script src="/js/admin.js" defer></script>
+</head>
+<body>
+
+  <div id="ownerWelcome" class="owner-welcome" aria-live="polite" aria-hidden="true">
+    <div class="owner-welcome-content">
+      <img src="/images/TOBA_STORE.jpeg" alt="لوجو متجر توبة" class="owner-welcome-logo">
+      <p class="owner-welcome-kicker">TOBA STORE</p>
+      <h1>تم تسجيل دخول المالك</h1>
+      <p class="owner-welcome-subtitle">أهلًا بعودتك إلى لوحة التحكم</p>
+      <div class="owner-welcome-progress"><span></span></div>
+      <p class="owner-welcome-caption">جارٍ تجهيز لوحة التحكم...</p>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="/"><img class="brand-logo" src="/images/TOBA_STORE.jpeg" alt="لوجو متجر توبة"><span>متجر توبة | TOBA STORE / ADMIN</span></a>
+    <div class="top-actions">
+      <a href="/" class="view-store">عرض المتجر ↗</a>
+      <button id="logoutButton" class="button secondary hidden">تسجيل الخروج</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="loginSection" class="login-card">
+      <span class="eyebrow">ADMIN ACCESS</span>
+      <h1>أهلًا بعودتك</h1>
+      <p class="muted">سجّل دخولك لإدارة المتجر والطلبات.</p>
+      <form id="loginForm">
+        <label for="username">اسم المستخدم</label>
+        <input id="username" name="username" autocomplete="username" required>
+        <label for="password">كلمة المرور</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button class="button primary full" type="submit">تسجيل الدخول</button>
+        <p id="loginMessage" class="message" role="status"></p>
+      </form>
+    </section>
+
+    <section id="dashboardSection" class="hidden">
+      <div class="welcome">
+        <div>
+          <span class="eyebrow">STORE MANAGEMENT</span>
+          <h1>لوحة التحكم</h1>
+          <p class="muted">إدارة المنتجات والمخزون والطلبات من مكان واحد.</p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <article class="stat-card"><span>المنتجات</span><strong id="statProducts">0</strong></article>
+        <article class="stat-card"><span>الطلبات</span><strong id="statOrders">0</strong></article>
+        <article class="stat-card"><span>طلبات جديدة</span><strong id="statNewOrders">0</strong></article>
+      </div>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div><span class="eyebrow">CATALOG</span><h2>إضافة منتج جديد</h2></div>
+        </div>
+        <form id="productForm" class="product-form" enctype="multipart/form-data">
+          <div class="field">
+            <label for="productName">اسم المنتج *</label>
+            <input id="productName" name="name" maxlength="150" required>
+          </div>
+          <div class="field">
+            <label for="productCategory">تصنيف المنتج *</label>
+            <select id="productCategory" name="category" required>
+              <option value="men">رجالي</option>
+              <option value="women">حريمي</option>
+              <option value="both" selected>الاتنين</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="productPrice">السعر بالجنيه *</label>
+            <input id="productPrice" name="price" type="number" min="0" step="0.01" required>
+          </div>
+          <div class="field">
+            <label for="productStock">الكمية المتاحة *</label>
+            <input id="productStock" name="stock" type="number" min="0" step="1" value="1" required>
+          </div>
+          <div class="field wide">
+            <label>المقاسات والكميات</label>
+            <div id="sizeRows"></div>
+            <button id="addSizeRow" class="button secondary" type="button">+ إضافة مقاس</button>
+            <p class="muted">سيب القسم فاضي لو المنتج مش محتاج مقاسات.</p>
+          </div>
+          <div class="field wide">
+            <label for="productDescription">وصف المنتج</label>
+            <textarea id="productDescription" name="description" maxlength="2000" rows="3"></textarea>
+          </div>
+          <div class="field wide">
+            <label>ألوان المنتج وصورة كل لون *</label>
+            <div id="colorRows"></div>
+            <button id="addColorRow" class="button secondary" type="button">+ إضافة لون وصورته</button>
+            <p class="muted">أضف كل لون واختر صورته من جهازك. كل صورة لا تتجاوز 5MB.</p>
+          </div>
+          <div class="field wide">
+            <button class="button primary" type="submit">حفظ المنتج</button>
+            <p id="productMessage" class="message" role="status"></p>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading"><div><span class="eyebrow">INVENTORY</span><h2>المنتجات الحالية</h2></div><button id="refreshProducts" class="button secondary">تحديث</button></div>
+        <div id="productsList" class="table-wrap"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading"><div><span class="eyebrow">ORDERS</span><h2>طلبات العملاء</h2></div><button id="refreshOrders" class="button secondary">تحديث</button></div>
+        <div id="ordersList" class="table-wrap"></div>
+      </section>
+      <p id="dashboardMessage" class="message" role="status"></p>
+    </section>
+  </main>
+
+  <footer>متجر توبة | TOBA STORE · لوحة التحكم</footer>
+</body>
+</html>
