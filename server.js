@@ -513,19 +513,28 @@ app.patch('/api/admin/orders/:id/status', requireAdmin, (req, res) => {
   res.json({ ok: true });
 });
 
-// إنشاء حساب المدير مرة واحدة من بيانات .env
-const adminCount = db.prepare('SELECT COUNT(*) AS count FROM admins').get().count;
-if (adminCount === 0 && process.env.ADMIN_USERNAME && process.env.ADMIN_PASSWORD) {
+// مزامنة حساب المدير مع بيانات Environment عند تشغيل السيرفر
+if (process.env.ADMIN_USERNAME && process.env.ADMIN_PASSWORD) {
+  const username = process.env.ADMIN_USERNAME.trim();
   const password = process.env.ADMIN_PASSWORD;
-  if (password.length < 12) {
-    console.error('كلمة مرور المدير يجب أن تكون 12 حرفًا على الأقل.');
+
+  if (!username || password.length < 12) {
+    console.error('اسم المستخدم مطلوب وكلمة المرور يجب أن تكون 12 حرفًا على الأقل.');
     process.exit(1);
   }
 
   const hash = bcrypt.hashSync(password, 12);
-  db.prepare('INSERT INTO admins (username, password_hash) VALUES (?, ?)')
-    .run(process.env.ADMIN_USERNAME, hash);
-  console.log('تم إنشاء حساب المدير الأول.');
+  const admin = db.prepare('SELECT id FROM admins ORDER BY id LIMIT 1').get();
+
+  if (admin) {
+    db.prepare('UPDATE admins SET username = ?, password_hash = ? WHERE id = ?')
+      .run(username, hash, admin.id);
+    console.log('تم تحديث بيانات حساب المدير.');
+  } else {
+    db.prepare('INSERT INTO admins (username, password_hash) VALUES (?, ?)')
+      .run(username, hash);
+    console.log('تم إنشاء حساب المدير.');
+  }
 }
 
 app.use((err, req, res, next) => {
