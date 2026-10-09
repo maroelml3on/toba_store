@@ -257,15 +257,7 @@ buyButton.addEventListener('click', () => {
   const sizeName = detailSize.value || 'مقاس موحد';
   const total = Number(product.price) * quantity;
 
-  const message = [
-    'السلام عليكم، عايز أطلب المنتج ده:',
-    `المنتج: ${product.name}`,
-    `اللون: ${colorName}`,
-    `المقاس: ${sizeName}`,
-    `السعر: ${money(product.price)}`,
-    `الكمية: ${quantity}`,
-    `الإجمالي: ${money(total)}`
-  ].join('\n');
+  const message = 'السلام عليكم';
 
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
   window.location.href = url;
