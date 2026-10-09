@@ -66,6 +66,7 @@ if (!productColumns.some(column => column.name === 'category')) {
   db.exec("ALTER TABLE products ADD COLUMN category TEXT NOT NULL DEFAULT 'both'");
 }
 
+app.set('trust proxy', 1);
 app.disable('x-powered-by');
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json({ limit: '100kb' }));
